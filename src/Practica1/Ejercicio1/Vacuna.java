@@ -1,10 +1,10 @@
 package Practica1.Ejercicio1;
 
 public class Vacuna {
-    private String marca;
-    private String paisOrigen;
-    private String enfermedadPreviene;
-    private int cantDosis;
+    protected String marca;
+    protected String paisOrigen;
+    protected String enfermedadPreviene;
+    protected int cantDosis;
 
     public Vacuna(String marca, String paisOrigen, String enfermedadPreviene, int cantDosis) {
         this.marca = marca;
