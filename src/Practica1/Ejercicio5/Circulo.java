@@ -10,10 +10,19 @@ public class Circulo extends FiguraGeometrica{
         this.radio = radio;
     }
 
+    public void setRadio(double radio){
+        this.radio = radio;
+    }
+
+    public double getRadio(){
+        return this.radio;
+    }
+
     @Override
     public double area() {
-        return Math.PI* Math.sqrt(radio);
+        return Math.PI * radio * radio;
     }
+
 
     @Override
     public void dibujar() {
