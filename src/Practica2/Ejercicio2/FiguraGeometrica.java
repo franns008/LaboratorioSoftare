@@ -1,6 +1,6 @@
 package Practica2.Ejercicio2;
 
-public  abstract class FiguraGeometrica {
+public  abstract class FiguraGeometrica implements Comparable<FiguraGeometrica> {
     private String color;
 
     public FiguraGeometrica(String color){
@@ -18,9 +18,9 @@ public  abstract class FiguraGeometrica {
     public String getColor(){
         return this.color;
     }
+
     @Override
     public int compareTo(FiguraGeometrica f){
-        return this.area() - f.area();
+        return Integer.compare(this.area(), f.area());
     }
-
 }

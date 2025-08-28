@@ -1,4 +1,4 @@
-package Practica2.Ejercicio2.;
+package Practica2.Ejercicio2;
 
 import Practica2.Ejercicio2.FiguraGeometrica;
 

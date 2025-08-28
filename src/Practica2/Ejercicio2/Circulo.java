@@ -1,22 +1,22 @@
 package Practica2.Ejercicio2;
 
 
-import Practica2.Ejercicio2.FiguraGeometrica;
+import Practica2.Ejercicio2.*;
 
 public class Circulo extends FiguraGeometrica {
 
-    private double radio;
+    private int radio;
 
     public Circulo(String color, int radio) {
         super(color);
         this.radio = radio;
     }
 
-    public void setRadio(double radio){
+    public void setRadio(int radio){
         this.radio = radio;
     }
 
-    public double getRadio(){
+    public int getRadio(){
         return this.radio;
     }
 

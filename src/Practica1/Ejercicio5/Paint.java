@@ -19,9 +19,9 @@ public class Paint {
 
     public void init(){
         this.figuras.add(new Circulo("azul",2));
-        this.figuras.add(new Circulo("azul",3));
-        this.figuras.add(new Rectangulo("verde",2,3));
         this.figuras.add(new Rectangulo("rojo",4,10));
+        this.figuras.add(new Rectangulo("verde",2,3));
+        this.figuras.add(new Circulo("azul",3));
     }
 
 }
