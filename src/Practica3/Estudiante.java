@@ -70,7 +70,11 @@ public class Estudiante {
         return new Comparator<Estudiante>() {
             @Override
             public int compare(Estudiante o1, Estudiante o2) {
-                return (o2.nombre+o2.apellido).compareTo(o1.nombre+o1.apellido);
+                int cmp = o2.nombre.compareTo(o1.nombre); // nombre descendente
+                if (cmp == 0) {
+                    return o2.apellido.compareTo(o1.apellido); // apellido descendente
+                }
+                return cmp;
             }
         };
     }
