@@ -17,5 +17,14 @@ public class Main {
         hashSet2.addAll(lista);
         System.out.println("Cantidad de elementos agregados " + hashSet2.getCantidadAgregados());
 
+        HashSetAgregadosMia<Integer> hashSetMia = new HashSetAgregadosMia<>();
+        hashSetMia.add(7);
+        hashSetMia.add(8);
+        hashSetMia.add(6);
+        hashSetMia.add(6);
+        System.out.println("Cantidad de elementos agregados "+hashSetMia.getCantidadAgregados());
+        hashSetMia.addAll(lista);
+        System.out.println("Cantidad de elementos agregados "+hashSetMia.getCantidadAgregados());
+
     }
 }
