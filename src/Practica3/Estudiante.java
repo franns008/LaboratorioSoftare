@@ -1,6 +1,7 @@
 package Practica3;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
@@ -75,27 +76,28 @@ public class Estudiante {
     }
 
     public static void main(String[] args) {
-        ArrayList<Estudiante> a = new ArrayList<>();
-        a.add(new Estudiante("suarez","francisco",20,5546,5));
-        a.add(new Estudiante("gonzalez","juan",36,54546,7));
-        a.add(new Estudiante("gutierrez","lucas",26,14446,2));
-        a.add(new Estudiante("gutierrez","matias",46,25446,10));
+        Estudiante[] a = {
+                new Estudiante("suarez","francisco",20,5546,5),
+                new Estudiante("gonzalez","juan",36,54546,7),
+                new Estudiante("gutierrez","lucas",26,14446,2),
+                new Estudiante("gutierrez","matias",46,25446,10)
+        };
         for (Estudiante e : a ){
             System.out.println("Datos estudiante "+e.getNombre()+" "+e.getApellido()+" "+e.getEdad()+" "+e.getLegajo());
         }
-        a.sort(a.get(0).sortEdad());
+        Arrays.sort(a,a[0].sortEdad());
         System.out.println("Edad: ");
         for (Estudiante e : a ){
             System.out.println("Datos estudiante "+e.getNombre()+" "+e.getApellido()+" "+e.getEdad()+" "+e.getLegajo());
         }
         System.out.println(" Nombre y Apellido ");
-        a.sort(a.get(0).sortNombreApellido());
+        Arrays.sort(a,a[0].sortNombreApellido());
         for (Estudiante e : a ){
             System.out.println("Datos estudiante "+e.getNombre()+" "+e.getApellido()+" "+e.getEdad()+" "+e.getLegajo());
         }
 
         System.out.println(" Legajo ");
-        a.sort(a.get(0).sortLegajo());
+        Arrays.sort(a,a[0].sortLegajo());
         for (Estudiante e : a ){
             System.out.println("Datos estudiante "+e.getNombre()+" "+e.getApellido()+" "+e.getEdad()+" "+e.getLegajo());
         }
