@@ -1,4 +1,4 @@
-package Practica3;
+package Practica3.Ejercicio8;
 
 import java.util.Iterator;
 import java.util.List;
@@ -12,7 +12,7 @@ public enum Musico {
         this.i = i;
     }
 
-    public void tocarCancion(List<Notas> n,List<Integer> d){
+    public void tocarCancion(List<Notas> n, List<Integer> d){
         Iterator <Notas> i = n.iterator();
         Iterator <Integer> i2 = d.iterator();
         while (i.hasNext()){

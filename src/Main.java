@@ -1,5 +1,5 @@
-import Practica3.FrecuenciasDeLa;
-import Practica3.Notas;
+import Practica3.Ejercicio8.FrecuenciasDeLa;
+import Practica3.Ejercicio8.Notas;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.

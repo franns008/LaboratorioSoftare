@@ -1,4 +1,4 @@
-package Practica3;
+package Practica3.Ejercicio3;
 
 import java.util.*;
 

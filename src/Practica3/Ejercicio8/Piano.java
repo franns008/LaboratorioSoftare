@@ -1,6 +1,6 @@
-package Practica3;
+package Practica3.Ejercicio8;
 
-public class Piano implements InstrumentoMusical{ ;
+public class Piano implements InstrumentoMusical { ;
     private double frecuencia;
     private Notas nota;
     private int duracion;

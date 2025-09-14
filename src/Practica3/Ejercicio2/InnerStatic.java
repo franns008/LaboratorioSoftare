@@ -1,6 +1,4 @@
-package Practica3;
-
-import java.lang.Math;
+package Practica3.Ejercicio2;
 
 import static java.lang.Math.pow;
 

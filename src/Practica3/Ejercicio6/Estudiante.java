@@ -1,9 +1,7 @@
-package Practica3;
+package Practica3.Ejercicio6;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.List;
 
 public class Estudiante {
     private String apellido;

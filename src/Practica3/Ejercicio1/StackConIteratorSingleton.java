@@ -1,13 +1,21 @@
-package Practica3;
+package Practica3.Ejercicio1;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Stack {
+/*
+ESTA CLASE EN SI NO  TIENE MUCHO SENTIDO, BASICAMENTE PORQUE SIEMPRE QUE LLAMES CON GET
+INSTANCE AL ITERADOR TE VA A DEVOLVER LA MISMA INSTANCIA, EL PROBLEMA ES QUE NUNCA
+SE ACTUALIZA LA MISMA, POR LO QUE RECORRERIAMOS SIEMPRE LO MISMO
+
+ES SOLO A MODO DE PRACTICA.
+
+ */
+public class StackConIteratorSingleton {
     private ArrayList items;
+    private Iterator instance;
 
-
-    public Stack(){
+    public StackConIteratorSingleton(){
         this.items = new ArrayList();
     }
 
@@ -21,11 +29,12 @@ public class Stack {
         return o;
     }
 
+
     public boolean isEmpty(){
         return this.items.size() ==0;
     }
     public static void main(String[] args) {
-        Stack s = new Stack();
+        StackConIteratorSingleton s = new StackConIteratorSingleton();
         s.push(1);
         s.push(2);
         s.push(3);
@@ -47,7 +56,14 @@ public class Stack {
         return new StackIterator();
     }
 
-    private class StackIterator implements Iterator{
+    public Iterator getIteradorSingleton(){
+        if (instance == null){
+            this.instance = new StackIterator();
+        }
+        return instance;
+    }
+
+    private  class StackIterator implements Iterator{
         private int cant;
         public StackIterator(){
             this.cant = items.size();

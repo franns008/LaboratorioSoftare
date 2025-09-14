@@ -1,4 +1,6 @@
-package Practica3;
+package Practica3.Ejercicio5;
+
+import Practica3.Ejercicio1.Stack;
 
 import java.util.ArrayList;
 import java.util.Iterator;

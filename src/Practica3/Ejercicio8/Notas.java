@@ -1,4 +1,4 @@
-package Practica3;
+package Practica3.Ejercicio8;
 
 public enum Notas {
     LA("A",256.63),

@@ -1,7 +1,9 @@
 package Practica3;
 
+import Practica3.Ejercicio8.Musico;
+import Practica3.Ejercicio8.Notas;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class TestEj8 {
 
