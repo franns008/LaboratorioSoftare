@@ -20,4 +20,7 @@ public enum Musico {
         }
     }
 
+    public void afinar(FrecuenciasDeLa f){
+        this.i.afinar(f);
+    }
 }
