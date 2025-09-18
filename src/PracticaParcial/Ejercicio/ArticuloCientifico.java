@@ -19,6 +19,10 @@ Declara el constructor de Documento como private. No se puede instanciar esa
 clase debido a que no se puede acceder al constructor de la misma. Tampoco va a poder ser
 heredada ya que no se va a poder hacer uso del constructor de super
 
+Nota: Esto significa que la clase se vuelve no heredable en la práctica,
+salvo que tenga constructores protegidos o públicos auxiliares.
+👉 Esto es lo que usan los Singletons,
+donde se quiere evitar la instanciación directa
 
 ) Declara el constructor de Documento como protected.
 Si se declara como protected, solo van a poder se va a poder llamar desde una
