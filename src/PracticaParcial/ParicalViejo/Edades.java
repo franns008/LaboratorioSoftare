@@ -1,4 +1,4 @@
-package PracticaParcial;
+package PracticaParcial.ParicalViejo;
 
 public enum Edades {
     APT("Apto para todo publico"),

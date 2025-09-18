@@ -1,4 +1,4 @@
-package PracticaParcial;
+package PracticaParcial.ParicalViejo;
 
 public enum RangoRep {
     MENOS10(0,10),

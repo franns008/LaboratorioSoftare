@@ -1,21 +1,21 @@
-package PracticaParcial;
+package PracticaParcial.ParicalViejo;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class BuscadorUsandoEnumComoSingleton {
+public class BuscadorConOtroSingleton {
 
-    private static final ComparadorPorPuntuacion comparadorPorPuntuacion = ComparadorPorPuntuacion.INSTANCE;
-    private static final ComparadorPorVisualizacion comparadorPorVisualizacion = ComparadorPorVisualizacion.INSTANCE;
-    private static final ComparadorPorAño comparadorPorAño = ComparadorPorAño.INSTANCE;
+    private static final ComparadorPorPuntuacion comparadorDePelicula = new ComparadorPorPuntuacion();
+    private static final ComparadorPorVisualizacion comparadorPorVisualizacion = new ComparadorPorVisualizacion();
+    private static final ComparadorPorAño comparadorPorAño = new ComparadorPorAño();
     private List<Pelicula> peliculas;
 
-    public BuscadorUsandoEnumComoSingleton(){
+    public BuscadorConOtroSingleton(){
         this.peliculas = new ArrayList<>();
     }
 
-    public BuscadorUsandoEnumComoSingleton(List<Pelicula> peliculas){
+    public BuscadorConOtroSingleton(List<Pelicula> peliculas){
         this.peliculas = peliculas;
     }
 
@@ -47,12 +47,10 @@ public class BuscadorUsandoEnumComoSingleton {
                 retornoLista.add(p);
             }
         }
-        retornoLista.sort(ComparadorPorAño.INSTANCE);
+        retornoLista.sort(comparadorPorVisualizacion);
         return retornoLista;
     }
-    private enum ComparadorPorVisualizacion implements Comparator<Pelicula>{
-        INSTANCE;
-
+    private static class ComparadorPorVisualizacion implements Comparator<Pelicula>{
         @Override
         public int compare(Pelicula o1, Pelicula o2) {
             return Integer.compare(o1.getCantRepr(),o2.getCantRepr());
@@ -60,8 +58,8 @@ public class BuscadorUsandoEnumComoSingleton {
 
     }
 
-    private enum ComparadorPorPuntuacion implements Comparator<Pelicula>{
-        INSTANCE;
+    private static  class ComparadorPorPuntuacion implements Comparator<Pelicula>{
+
         @Override
         public int compare(Pelicula o1, Pelicula o2) {
             return Double.compare(o1.getValoracion(),o2.getValoracion());
@@ -70,8 +68,8 @@ public class BuscadorUsandoEnumComoSingleton {
 
     }
 
-    private enum ComparadorPorAño implements Comparator<Pelicula>{
-        INSTANCE;
+    private static class ComparadorPorAño implements Comparator<Pelicula>{
+
         @Override
         public int compare(Pelicula o1, Pelicula o2) {
             return o1.getAño().compareTo(o2.getAño());

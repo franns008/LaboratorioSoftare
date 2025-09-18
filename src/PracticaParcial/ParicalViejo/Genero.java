@@ -1,4 +1,4 @@
-package PracticaParcial;
+package PracticaParcial.ParicalViejo;
 
 public enum Genero {
     ACCION("Accion"),

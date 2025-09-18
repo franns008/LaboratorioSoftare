@@ -1,4 +1,4 @@
-package PracticaParcial;
+package PracticaParcial.ParicalViejo;
 
 import java.util.ArrayList;
 import java.util.Comparator;

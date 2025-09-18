@@ -1,4 +1,4 @@
-package PracticaParcial;
+package PracticaParcial.ParicalViejo;
 
 public enum RangoVal {
     HASTA2(0,2.0),

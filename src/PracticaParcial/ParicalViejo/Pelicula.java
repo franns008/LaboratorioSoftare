@@ -1,6 +1,5 @@
-package PracticaParcial;
+package PracticaParcial.ParicalViejo;
 
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
