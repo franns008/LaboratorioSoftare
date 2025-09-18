@@ -1,6 +1,6 @@
 package PracticaParcial.Ejercicio;
 
-public class ArticuloCientifico extends Documento {
+public class ArticuloCientifico extends Documento implements Exportable{
     private String revista;
 
     public ArticuloCientifico(String titulo, String autor,
@@ -10,8 +10,8 @@ public class ArticuloCientifico extends Documento {
     }
 
     @Override
-    public String toString() {
-        return super.toString()+" Revista "+this.revista;
+    public String exportar() {
+        return super.toString() + " Revista "+revista;
     }
 }
 /*

@@ -1,6 +1,6 @@
 package PracticaParcial.Ejercicio;
 
-public class Libro extends Documento {
+public class Libro extends Documento implements Exportable{
     private int isbn;
 
     public Libro(String titulo, String autor,
@@ -10,7 +10,7 @@ public class Libro extends Documento {
     }
 
     @Override
-    public String toString() {
+    public String exportar() {
         return super.toString()+ "isbn "+this.isbn;
     }
 }
