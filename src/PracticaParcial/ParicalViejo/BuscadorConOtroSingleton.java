@@ -8,7 +8,15 @@ public class BuscadorConOtroSingleton {
 
     private static final ComparadorPorPuntuacion comparadorDePelicula = new ComparadorPorPuntuacion();
     private static final ComparadorPorVisualizacion comparadorPorVisualizacion = new ComparadorPorVisualizacion();
-    private static final ComparadorPorAño comparadorPorAño = new ComparadorPorAño();
+    private ComparadorPorAño comparadorPorAño;
+
+    public Comparator getComparadorPorAño(){
+        if (comparadorPorAño == null){
+            comparadorPorAño = new ComparadorPorAño();
+        }
+        return  comparadorPorAño;
+    }
+
     private List<Pelicula> peliculas;
 
     public BuscadorConOtroSingleton(){
@@ -50,6 +58,7 @@ public class BuscadorConOtroSingleton {
         retornoLista.sort(comparadorPorVisualizacion);
         return retornoLista;
     }
+
     private static class ComparadorPorVisualizacion implements Comparator<Pelicula>{
         @Override
         public int compare(Pelicula o1, Pelicula o2) {

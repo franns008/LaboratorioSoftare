@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-        LoggerAvanzadoV2 l = LoggerAvanzadoV2.getLoggerAvanzadoV2();
+        LoggerAvanzadoV2 l = LoggerAvanzadoV2.l;
         l.logInfo("hola");
         l.logError("Chau");
         l.logWarning("Cuidado che");
