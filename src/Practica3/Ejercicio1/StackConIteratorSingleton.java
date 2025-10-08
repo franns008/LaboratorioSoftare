@@ -65,7 +65,8 @@ public class StackConIteratorSingleton {
 
     private  class StackIterator implements Iterator{
         private int cant;
-        public StackIterator(){
+
+        private  StackIterator(){
             this.cant = items.size();
         }
 
