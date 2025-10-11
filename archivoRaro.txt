@@ -1,0 +1,1 @@
+Direccion 127.0.0.1Puerto 8765Archivo archivoRaro.txt

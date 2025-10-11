@@ -1,55 +1,53 @@
 package Practica5.Ejercicio2;
 
-import jdk.jfr.AnnotationElement;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
-import java.lang.reflect.*;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
+import java.lang.reflect.Field;
 
 public class Procesador {
 
     public static void main(String[] args) {
         Class<?> claseBean;
         try {
-             claseBean = Class.forName(args[0]);
-        }
-        catch (Exception e){
+            claseBean = Class.forName(args[0]);
+        } catch (Exception e) {
             System.out.println("No encontre la clase");
-            return ;
+            return;
         }
-        if(claseBean.isAnnotationPresent(Archivo.class)) {
-            String textoImprimir = "";
+
+        if (claseBean.isAnnotationPresent(Archivo.class)) {
+            StringBuilder textoImprimir = new StringBuilder();
             Archivo a = claseBean.getAnnotation(Archivo.class);
-            String archivo;
-            if (a.name() != null) {
-                archivo = a.name();
-                textoImprimir += "<nombreClase>" + a.name() + "</nombreClase>" + "\n";
-            } else {
-                archivo = claseBean.getName();
-                textoImprimir += "<nombreClase>" + ReflectPermission.class.getName() + "</nombreClase>" + "\n";
-            }
-            for  (Field f : claseBean.getDeclaredFields()) {
-                if (f.isAnnotationPresent(AlmacenarAtributo.class)){
-                    textoImprimir += "<nombreAtributo>"+f.getName()+"<nombreAtributo>"+"\n";
-                    textoImprimir += "<valorAtributo>"+f.toString()+"<valorAtributo>"+"\n";
-                }
-            }
+            String archivo = (a.name() != null && !a.name().isEmpty()) ? a.name() : claseBean.getSimpleName() + ".txt";
+
+            textoImprimir.append("<nombreClase>").append(claseBean.getSimpleName()).append("</nombreClase>\n");
 
             try {
-                BufferedWriter file;
-                file = new BufferedWriter(new FileWriter(archivo));
-                System.out.println("Archivo creado exitosamente en: " + archivo);
-            } catch (IOException e) {
-                System.err.println("Error al crear el archivo: " + e.getMessage());
+                Object instancia = claseBean.getDeclaredConstructor().newInstance();
+
+                for (Field f : claseBean.getDeclaredFields()) {
+                    if (f.isAnnotationPresent(AlmacenarAtributo.class)) {
+                        f.setAccessible(true); // permitir acceso a campos privados
+                        Object valor = f.get(instancia);
+
+                        textoImprimir.append("<nombreAtributo>")
+                                .append(f.getName())
+                                .append("</nombreAtributo>\n");
+                        textoImprimir.append("<valorAtributo>")
+                                .append(valor)
+                                .append("</valorAtributo>\n");
+                    }
+                }
+
+                try (BufferedWriter file = new BufferedWriter(new FileWriter(archivo))) {
+                    file.write(textoImprimir.toString());
+                    System.out.println("Archivo creado exitosamente en: " + archivo);
+                }
+
+            } catch (Exception e) {
+                System.err.println("Error al procesar los campos: " + e.getMessage());
             }
         }
-
-
     }
-
 }

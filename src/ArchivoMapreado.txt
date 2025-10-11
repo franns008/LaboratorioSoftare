@@ -1,0 +1,7 @@
+<nombreClase>Bean</nombreClase>
+<nombreAtributo>nombre</nombreAtributo>
+<valorAtributo>algo</valorAtributo>
+<nombreAtributo>valorNum</nombreAtributo>
+<valorAtributo>20</valorAtributo>
+<nombreAtributo>detalle</nombreAtributo>
+<valorAtributo>Un texto largo que simula ser un detalle</valorAtributo>
