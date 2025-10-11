@@ -1,50 +1,67 @@
 package Practica5.Ejercicio3;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.lang.reflect.Field;
+
+import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.time.LocalDateTime;
 
 public class Contenedor {
 
-    public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        StringBuilder textoImprimir = new StringBuilder();
-        Class<?> implementacionServidor = ImplementacionServidor.class;
-        Servidor s = implementacionServidor.getAnnotation(Servidor.class);
-        textoImprimir.append("Direccion "+s.direccion());
-        textoImprimir.append("Puerto "+s.puerto());
-        textoImprimir.append("Archivo "+s.archivo());
-        Object instancia = implementacionServidor.getDeclaredConstructor().newInstance();
+    public static void main(String[] args) {
+        try {
+            Class<?> implementacionServidor = ImplementacionServidor.class;
+            Servidor s = implementacionServidor.getAnnotation(Servidor.class);
 
-        // recorrer todos los métodos
-        for (Method m : implementacionServidor.getDeclaredMethods()) {
-            if (m.isAnnotationPresent(Invocar.class)) {
+            System.out.println("Servidor iniciado en:");
+            System.out.println("→ Dirección: " + s.direccion());
+            System.out.println("→ Puerto: " + s.puerto());
+            System.out.println("→ Log: " + s.archivo());
 
-                // mostrar nombre del método
-                System.out.println("Invocando: " + m.getName());
+            Object instancia = implementacionServidor.getDeclaredConstructor().newInstance();
 
-                // según los parámetros del método, invocar con distintos valores de prueba
-                Class<?>[] params = m.getParameterTypes();
+            try (ServerSocket serverSocket = new ServerSocket(s.puerto())) {
+                System.out.println("Esperando conexiones...");
 
-                if (params.length == 3) {
-                    m.invoke(instancia, "Hola mundo", "Fran", 1);
-                } else if (params.length == 1) {
-                    m.invoke(instancia, "Otro mensaje");
-                } else if (params.length == 0) {
-                    m.invoke(instancia);
+
+                while (true) {
+                    Socket cliente = serverSocket.accept();
+
+                    String ipCliente = cliente.getInetAddress().getHostAddress();
+                    System.out.println("Cliente conectado desde: " + ipCliente);
+
+                    try (FileWriter fw = new FileWriter(s.archivo(), true);
+                         BufferedWriter bw = new BufferedWriter(fw)) {
+                        bw.write(LocalDateTime.now() + " - Cliente desde: " + ipCliente + "\n");
+                    }
+
+                    for (Method m : implementacionServidor.getDeclaredMethods()) {
+                        if (m.isAnnotationPresent(Invocar.class)) {
+                            if (m.getParameterCount() == 0) {
+                                m.invoke(instancia);
+                            } else if (m.getParameterCount() == 1) {
+                                m.invoke(instancia, "Mensaje recibido desde " + ipCliente);
+                            } else if (m.getParameterCount() == 3) {
+                                m.invoke(instancia, "Hola", ipCliente, 1);
+                            }
+                        }
+                    }
+
+                    try (PrintWriter out = new PrintWriter(cliente.getOutputStream())) {
+                        out.println("HTTP/1.1 200 OK");
+                        out.println("Content-Type: text/html");
+                        out.println("<h1>FELICIDADES! se ejecuto correctamente</h1>");
+                        out.println("<p>Invocaciones ejecutadas correctamente.</p>");
+                    }
+
+                    cliente.close();
                 }
             }
+
+        } catch (IOException | InstantiationException | IllegalAccessException |
+                 InvocationTargetException | NoSuchMethodException e) {
+            e.printStackTrace();
         }
-
-        try (BufferedWriter file = new BufferedWriter(new FileWriter(s.archivo()))){
-            file.write(textoImprimir.toString());
-            System.out.println("archivo Creado");
-        }catch (Exception e){
-            System.err.println("error en el archivo");
-        }
-
-
-
     }
-
 }
