@@ -1,8 +1,11 @@
 package Practica7.Ejercicio3b
 
+import java.lang.Exception
 import java.util.concurrent.Callable
+import java.util.concurrent.ExecutionException
 import java.util.concurrent.Executors
 import java.util.concurrent.Future
+import java.util.concurrent.ThreadLocalRandom
 import java.util.concurrent.TimeUnit
 
 class CarreraAbandonar {
@@ -16,6 +19,12 @@ class CarreraAbandonar {
             val participante = Callable{
                 var recorrido = 0
                 while (recorrido < limite){
+                        var random =ThreadLocalRandom.current().nextDouble()
+                        if( random <= 0.1){
+                            println(random)
+                            throw RuntimeException()
+                        }
+
                     recorrido+=10
                     TimeUnit.MILLISECONDS.sleep((100..1000).random().toLong())
                     //una forma de hacer que no siempre gane el mismo
@@ -23,14 +32,13 @@ class CarreraAbandonar {
                 1
             }
             participantesCorriendo.add(id to exec.submit(participante))
-
-
         }
         for ((i,p)in participantesCorriendo){
-            if(p.get()==1){
-                println("El participante $i termino la carrera")
-            }else{
-                println("El participante $i no logro finalizar la carrera")
+            try{
+                p.get()
+                println("El thread llego correctamente $i ")
+            }catch (e: ExecutionException){
+                println("El thread $i no termino la carrera "+e.message)
             }
         }
 

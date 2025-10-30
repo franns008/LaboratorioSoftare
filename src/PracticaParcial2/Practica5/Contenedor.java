@@ -38,7 +38,6 @@ public class Contenedor {
             HttpServer server = null;
             try{
                 server = HttpServer.create(new InetSocketAddress(dir,puerto),0);
-
             }catch (Exception e){
                 System.out.println("Error al arrancar el server"+e.getMessage());
             }
@@ -78,6 +77,7 @@ public class Contenedor {
                     }
 
                     byte[] bytes = respuesta.toString().getBytes();
+                    exchange.getResponseHeaders().set("Content-type","text/html; charset=UTF-8");
                     exchange.sendResponseHeaders(200, bytes.length);
                     exchange.getResponseBody().write(bytes);
                     exchange.getResponseBody().close();
