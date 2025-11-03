@@ -6,24 +6,24 @@ package PracticaParcial2.Practica5;
         puerto = 10500,
         archivo = "SalidaServidor.txt"
 )
-public class ClasePrueba {
+public class ClasePruebaConMetodosStatic {
 
     @Invocar
-    public String bienvenida(){
+    public static String bienvenida(){
         return "Bienvenido a mi servidor con anotadores";
     }
 
-    public String noAparece(){
+    public static String noAparece(){
         return "No deberias ver esto";
     }
 
     @Invocar
-    public String mensajeRandom(){
+    public static  String mensajeRandom(){
         return "Este es un mensaje que devuelve cualquier cosa";
     }
 
     @Invocar
-    public void soloPrinteo(){
+    public static void soloPrinteo(){
         System.out.println("Hola printeo esto nomas, pero no retorno nada");
     }
 }

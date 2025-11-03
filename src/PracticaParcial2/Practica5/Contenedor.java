@@ -19,15 +19,9 @@ public class Contenedor {
     public static void main(String[] args) throws IllegalAccessException {
         Class<?> clasePrueba = null;
         try{
-            clasePrueba = Class.forName("PracticaParcial2.Practica5.ClasePrueba");
-        }catch(Exception e){
-            System.out.println("Hubo un error: "+e.getMessage());
-        }
-        Object instancia = null;
-        try {
-            instancia = clasePrueba.getConstructor().newInstance();
-        }catch (Exception e){
-            System.out.println("Error en instancia");
+            clasePrueba = Class.forName("PracticaParcial2.Practica5.ClasePruebaConMetodosStatic");
+        }catch(Exception e) {
+            System.out.println("Hubo un error: " + e.getMessage());
         }
 
         if (clasePrueba.isAnnotationPresent(Servidor.class)) {
@@ -59,7 +53,6 @@ public class Contenedor {
                     metodosAInvocar.add(m);
                 }
             }
-            Object finalInstancia = instancia;
             handler = new HttpHandler() {
                 @Override
                 public void handle(HttpExchange exchange) throws IOException {
@@ -67,7 +60,7 @@ public class Contenedor {
 
                     for (Method m : metodosAInvocar) {
                         try {
-                            Object r = m.invoke(finalInstancia);
+                            Object r = m.invoke(null);
                             if (r != null)
                                 respuesta.append(r.toString()).append("\n");
                         } catch (Exception e) {
